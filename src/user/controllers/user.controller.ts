@@ -30,6 +30,7 @@ import { UserService } from '../Services/user.service';
 import { authenticator } from 'otplib';
 import { TwoFactorAuthenticationService } from 'src/otplib/twoFactorAuthentication.service';
 import QRCode, { toDataURL } from 'qrcode';
+import ChangePassWord from 'src/auth/Models/change-pass.interface';
 
 @ApiBearerAuth()
 @ApiTags('users')
@@ -94,8 +95,12 @@ export class UserController {
     }
     throw new BadRequestException('OTP Not Alive');
   }
+
   @Post('sign-in')
-  async signIn(@Body() { userLogin, token }) {
+  async signIn(
+    @Body() { userLogin, token },
+    @Param('userLogin') dsajdksasad: UserLogin,
+  ) {
     if (token) {
       const score = await this.authService.checkCapcha(
         token,
@@ -118,7 +123,10 @@ export class UserController {
   }
 
   @Put('change/password')
-  async changePassword(@Body() userPassword) {
+  async changePassword(
+    @Body() userPassword: ChangePassWord,
+    @Param('userPassword') dsadsadsa: ChangePassWord,
+  ) {
     return await this.userService.changePassUser(userPassword);
   }
 }
