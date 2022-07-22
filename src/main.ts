@@ -7,7 +7,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
   const config = new DocumentBuilder()
-    .setTitle('RestJs')
+    .setTitle('Nestjs')
     .setDescription('API description')
     .setVersion('1.0')
     .setBasePath('/api')
